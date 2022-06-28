@@ -1,0 +1,12 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:CustomerRequest xmlns:ns2="http://localhost:8080/ws">
+            <ns2:customerName>Sri Harsha Gangavelli</ns2:customerName>
+            <ns2:age>28</ns2:age>
+            <ns2:yearlyIncome>7897546546</ns2:yearlyIncome>
+            <ns2:cibilScore>714</ns2:cibilScore>
+            <ns2:employmentMode>erer</ns2:employmentMode>
+        </ns2:CustomerRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
