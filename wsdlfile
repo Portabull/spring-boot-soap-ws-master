@@ -1,0 +1,134 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://localhost:8080/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:8080/ws" targetNamespace="http://localhost:8080/ws">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://localhost:8080/ws">
+			<xsd:element name="CustomerRequest1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="customerName" type="xsd:string"/>
+						<xsd:element name="age" type="xsd:int"/>
+						<xsd:element name="yearlyIncome" type="xsd:long"/>
+						<xsd:element name="cibilScore" type="xsd:int"/>
+						<xsd:element name="employmentMode" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CustomerRequest2">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="customerName" type="xsd:string"/>
+						<xsd:element name="age" type="xsd:int"/>
+						<xsd:element name="yearlyIncome" type="xsd:long"/>
+						<xsd:element name="cibilScore" type="xsd:int"/>
+						<xsd:element name="employmentMode" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CreateStudentPayload">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="id" type="xsd:long"/>
+						<xsd:element name="name" type="xsd:string"/>
+						<xsd:element name="address" type="xsd:string"/>
+						<xsd:element name="age" type="xsd:int"/>
+						<xsd:element name="classStanded" type="xsd:int"/>
+						<xsd:element name="totalMarks" type="xsd:int"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="StudentDetailsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="id" type="xsd:long"/>
+						<xsd:element name="name" type="xsd:string"/>
+						<xsd:element name="address" type="xsd:string"/>
+						<xsd:element name="age" type="xsd:int"/>
+						<xsd:element name="classStanded" type="xsd:int"/>
+						<xsd:element name="totalMarks" type="xsd:int"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="StudentDetailsPayload">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="id" type="xsd:long"/>
+						<xsd:element name="age" type="xsd:int"/>
+						<xsd:element name="classStanded" type="xsd:int"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Acknowledgement">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="isEligible" type="xsd:boolean"/>
+						<xsd:element name="approvedAmount" type="xsd:long"/>
+						<xsd:element maxOccurs="unbounded" name="CriteriaMismatch" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="StudentDetailsResponse">
+		<wsdl:part element="tns:StudentDetailsResponse" name="StudentDetailsResponse"> </wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="StudentDetailsPayload">
+		<wsdl:part element="tns:StudentDetailsPayload" name="StudentDetailsPayload"> </wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="LoanEligibilityindicator">
+		<wsdl:operation name="StudentDetailsPayload">
+			<wsdl:output message="tns:StudentDetailsResponse" name="StudentDetailsResponse"> </wsdl:output>
+
+			<wsdl:input message="tns:StudentDetailsPayload" name="StudentDetailsPayload">
+
+			</wsdl:input>
+		</wsdl:operation>
+
+
+		<wsdl:operation name="StudentDetails">
+			<wsdl:output message="tns:StudentDetailsResponse" name="StudentDetailsResponse"> </wsdl:output>
+
+			<wsdl:input message="tns:StudentDetailsPayload" name="StudentDetailsPayload">
+
+			</wsdl:input>
+		</wsdl:operation>
+
+
+	</wsdl:portType>
+	<wsdl:binding name="LoanEligibilityindicatorSoap11" type="tns:LoanEligibilityindicator">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="StudentDetails">
+			<soap:operation soapAction=""/>
+			<wsdl:output name="StudentDetailsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+
+			<wsdl:input name="StudentDetailsPayload">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+
+
+		<wsdl:operation name="StudentDetailsPayload">
+			<soap:operation soapAction=""/>
+			<wsdl:output name="StudentDetailsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+
+			<wsdl:input name="StudentDetailsPayload">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="LoanEligibilityindicatorService">
+		<wsdl:port binding="tns:LoanEligibilityindicatorSoap11" name="LoanEligibilityindicatorSoap11">
+			<soap:address location="http://localhost:8080/ws"/>
+		</wsdl:port>
+	</wsdl:service>
+
+	<wsdl:service name="StudentDetailsPayload">
+		<wsdl:port binding="tns:LoanEligibilityindicatorSoap11" name="StudentDetailsPayload">
+			<soap:address location="http://localhost:8080/ws"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
